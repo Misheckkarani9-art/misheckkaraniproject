@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wellbeing Healthcare Center</title>
+ <link rel="stylesheet" href="dist/css/bootstrap.css">
+<script src="dist/js/bootstrap.js"></script> 
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.js">
+
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff; /* blueish navbar */
+    padding: 12px 30px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Logo */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffd700; /* gold accent */
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Navbar links */
+.navbar-left a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.navbar-left a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Right side */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-right input[type="text"] {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.navbar-right button {
+    padding: 7px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffd700;
+    color: #007bff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.navbar-right button:hover {
+    background-color: #e6c200;
+}
+
+/* Login form */
+#loginForm {
+    display: none;
+    padding: 20px;
+    margin: 30px auto;
+    background: white;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#loginForm input, #loginForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#loginForm button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#loginForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Profile section */
+.section {
+    display: none;
+    padding: 40px;
+    text-align: center;
+    background: white;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    color: #007bff;
+}
+
+.profile-info {
+    margin: 10px 0;
+}
+
+.profile-info span {
+    font-weight: bold;
+}
+
+.profile-info input, .profile-info textarea {
+    width: 60%;
+    padding: 6px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.backBtn {
+    margin-top: 20px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: none;
+    background-color: #ffd700;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar-right { width: 100%; justify-content: space-between; }
+}
+.logo{
+  text-align: center;
+}
+</style>
+</head>
+<body class="body">
+
+<!-- Navbar -->
+ <section class="row">
+   <div class="col-lg-12">
+    <button class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarcontents">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+<nav class="navbar">
+    <div class="navbar-left">
+        <div class="logo ">WELLBIENG HELTHCARE </div>
+        <a href="#" id="profileLink" style="display:none;"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="medicine.html"><i class="fa-solid fa-pills"></i> Drugs & Supplements</a>
+        <a href="symptoms.html"><i class="fa-solid fa-stethoscope"></i> Symptom Checker</a>
+        <a href="doctor.html"><i class="fa-solid fa-user-doctor"></i> Find Personal Doctor</a>
+        <a href="appoitment.html"><i class="fa-solid fa-calendar-check"></i> Request Appointment</a>
+        <input type="text" placeholder="Search...">
+        <button id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+    </div>
+</nav><br><hr>
+  </div>
+</section>
+
+<!-- Login form -->
+<div id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="nameInput" placeholder="Name">
+    <input type="text" id="phoneInput" placeholder="Phone Number">
+    <input type="email" id="emailInput" placeholder="Email Address">
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button id="submitLogin">Login</button>
+</div>
+
+
+
+<!-- Profile Section -->
+<div class="section" id="profileSection">
+    <h2>Profile</h2>
+    <div class="profile-info"><span>Name:</span> <input type="text" id="profileNameInput"></div>
+    <div class="profile-info"><span>Phone:</span> <input type="text" id="profilePhoneInput"></div>
+    <div class="profile-info"><span>Email:</span> <input type="email" id="profileEmailInput"></div>
+    <div class="profile-info"><span>Password:</span> <input type="password" id="profilePasswordInput"></div>
+    <div class="profile-info"><span>Hospital:</span> <input type="text" id="hospitalInput" placeholder="Hospital visited recently"></div>
+    <div class="profile-info"><span>Doctor:</span> <input type="text" id="doctorInput" placeholder="Doctor treated recently"></div>
+    <div class="profile-info"><span>Medicine:</span> <textarea id="medicineInput" placeholder="Medicines currently taking"></textarea></div>
+    <div class="profile-info"><span>Additional Info:</span> <textarea id="additionalInput" placeholder="Additional info"></textarea></div>
+    <button class="backBtn" onclick="showHome()">Return Home</button>
+</div>
+
+<!-- Footer -->
+
+
+<script>
+// Elements
+const loginBtn = document.getElementById('loginBtn');
+const loginForm = document.getElementById('loginForm');
+const submitLogin = document.getElementById('submitLogin');
+const profileLink = document.getElementById('profileLink');
+const profileSection = document.getElementById('profileSection');
+
+// Show login form
+loginBtn.addEventListener('click', () => {
+    loginForm.style.display = 'block';
+});
+
+// Login submit
+submitLogin.addEventListener('click', () => {
+    const name = document.getElementById('nameInput').value;
+    const phone = document.getElementById('phoneInput').value;
+    const email = document.getElementById('emailInput').value;
+    const password = document.getElementById('passwordInput').value;
+
+    if(name && phone && email && password){
+        loginForm.style.display = 'none';
+        loginBtn.style.display = 'none';
+        profileLink.style.display = 'flex';
+
+        document.getElementById('profileNameInput').value = name;
+        document.getElementById('profilePhoneInput').value = phone;
+        document.getElementById('profileEmailInput').value = email;
+        document.getElementById('profilePasswordInput').value = password;
+
+        showSection('profileSection');
+    } else {
+        alert('Please fill in all fields.');
+    }
+});
+
+// Profile link click
+profileLink.addEventListener('click', () => {
+    showSection('profileSection');
+});
+
+// Show section
+function showSection(id){
+    profileSection.style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+}
+
+// Return home
+function showHome(){
+    profileSection.style.display = 'none';
+    loginForm.style.display = 'none';
+}
+</script>
+<div style="height: 50px; display:flex; justify-content:center; align-items:center; font-size:40px; color:#007bff;">
+    <div class="logo" h>WELLBIENG HELTHCARE </div>
+</div>
+    </div>
+
+</section> <br><hr>
+
+<hr><section class="row">
+    <div class="col-lg-12">
+        <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active bg-danger" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class="bg-danger"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3" class="bg-danger"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4" class="bg-danger"></button>
+  </div>
+
+  <div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-info" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-info" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/d1.jpg" class="d-block w-100" alt="..."  height="550px">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="text-success"><b>BEST DOCTORS</b></h3>
+        <p class="text-danger"><b>THEY ARE HIGHLY TRAINED TO MAKE YOUR HEALTH SUPERB</b></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/A doctor is checking a patient_.jpg" class="d-block w-100" alt="..."  height="550px">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="text-success"><b>HIGHLY TRAINED NURSES</b></h3>
+        <p class="text-danger"><b>BETTER NURSING FOR INPATIENT</b></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/Gallery _ mysite.jpg" class="d-block w-100" alt="..." height="550px">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="text-success"><b>HIGHLY EQUIPPED PHARMACY</b></h3>
+        <p class="text-danger"><b>HIGHLY EQUIPPED FOR YOUR PERSONAL HEALTH </b></p>
+      </div>
+    </div>
+
+    
+      </div>
+  </div>
+  </div>
+  
+  
+</section><br><hr>
+
+
+<hr><section class="row">
+  <h4 class="text-primary"><b>ARISING HEALTH ISSUES</b></h4>
+      <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+  <img src="images/Among women, it is the second leading cause of….jpg" class="card-img-top" alt="..." height="200px">
+  <div class="card-body">
+    <h5 class="card-title text-danger">CANCER</h5>
+    <p class="card-text text-success">We also run diagnosis for the disease</p>
+    <p class="card-text text-success">the following are types of canncer you should on about</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">BREAST CANCER</li>
+    <li class="list-group-item">LUNG CANCER</li>
+    <li class="list-group-item">TESTICAL CANCER</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+  <img src="images/People with diabetes are at an elevated risk for….jpg" class="card-img-top" alt="..." height="200px">
+  <div class="card-body">
+    <h5 class="card-title text-danger">COLD & FLU</h5>
+    <p class="card-text text-success">Very deadly for children btwn 1month to 2yrs </p>
+    <p class="card-text text-success">What you need to do if it gets you</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">DRESS WARMLY</li>
+    <li class="list-group-item">WEAR MASK IF THE PLACE IS DUSTY</li>
+    <li class="list-group-item">DRINK WARMED WATER</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+  <img src="images/While most of us may look forward to welcoming a….jpg" class="card-img-top" alt="..." height="200px">
+  <div class="card-body">
+    <h5 class="card-title text-danger">ASTHMA</h5>
+     <p class="card-text text-success">Very  serious disease</p>
+     <p class="card-text text-success">What you need to do incase of attack</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ENSURE THE PATIENT DOESNT PANIC</li>
+    <li class="list-group-item">TAKE THE INHALER AND GIVE IT TO THEM</li>
+    <li class="list-group-item">PAT AT THE BACK SLOWLY</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+  <img src="images/Czasem wystarczy drobna korekta, żeby zauważyć….jpg" class="card-img-top" alt="..." height="200px">
+  <div class="card-body">
+    <h5 class="card-title">DIABETES</h5>
+    <p class="card-text">Very common disease to the eldery</p>
+    <p class="card-text">We offer councilling for people with search disease</p>
+    <p class="card-text">What you need to do</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">TAKE MORE FRUIT</li>
+    <li class="list-group-item">TAKE EXERCISES</li>
+    <li class="list-group-item">TAKE ALOT OF WATER</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+      </div>
+
+   </section><br><hr>
+    
+
+   <hr><section class="row">
+    <div class="col-lg-12">
+      <h5 class="text-success"><b>HEALTH NEWS</b></h5>
+      <div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="images/If you’re considering using a daily low-dose….jpg" class="img-fluid rounded-start" alt="..." height="50%">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title text-center"><b>ASPRIN MYTHS THAT CONTINUE TO CIRCULATE IN 2026</b></h2>
+        <p class="card-text text-dark"><b>Doctors no longer reccomend daily usee oof asprin for most people
+         yet many still taken it despite limited benerfits & risks.In 2023 over1 in10 adults who should taken
+         it</b></p>
+         <style>
+          
+         </style>
+        <p class="card-text"><small class="text-body-secondary " id="one">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+   </section><br><hr>
+
+ <hr><h2 class="text-success"><b>TEETH CARE</b></h2>
+ <section class="row">
+          <div class="col-lg-8">
+          <div class="card mb-3">
+  <img src="images/dentist.jpg" class="card-img-top" alt="..." height="500px">
+  <div class="card-body">
+    <h2 class="card-title text-center text-danger"><b>WE HAVE BEST DENTIST WHO MAKES YOUR SMILE</b></h2>
+    <p class="card-text text-info">come and recieve a good treatment by our dentists to any teeth problems and you are good to make your smile</p>
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 months ago</small></p>
+  </div>
+</div>
+
+          </div>
+
+           <div class="col-lg-4">
+          <div class="card mb-3">
+  <img src="images/toooth1.jpg" class="card-img-top" alt="..." height="500px">
+  <div class="card-body">
+    <h2 class="card-title text-center text-dark"><b>HAVE ACHING TOOTH?</b></h2>
+    <p class="card-text ">Dont worry we got you with our highly skilled dentists can return youur smile.</p>
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 months ago</small></p>
+  </div>
+</div>
+
+          </div>
+   </section>
+   
+  <hr><section class="row">
+      <div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b>GUM SORE</b></h3>
+    <p class="card-tex text-primary">This is an issue that amke you feel uncomfortable and we can help to treeat it. </p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/sore (1).jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div>
+
+       <div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b>GAPS</b></h3>
+    <p class="card-text text-primary">This is an issue that amke you feel uncomfortable and we fill teeth</p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/gaps.jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div>
+
+            <div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b>SENSITIVITY</b></h3>
+    <p class="card-text text-primary">This is an issue that amke you feel uncomfortable and we fill teeth</p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/sensitivity.jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div><br><hr>
+
+      <hr><div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b>BRACES FIXING</b></h3>
+    <p class="card-text text-primary">This is an issue that amke you feel uncomfortable and we fill teeth</p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/braces.jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div>
+
+            <div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b> TOOTH DECAY</b></h3>
+    <p class="card-text text-primary">This is an issue that amke you feel uncomfortable and we fill teeth</p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/Tooth decay is the destruction of your tooth….jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div>
+
+            <div class="col-lg-4">
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-dark text-center"><b>TEETH CLEANING</b></h3>
+    <p class="card-text text-primary">This is an issue that amke you feel uncomfortable and we fill teeth</p>
+    <p class="card-text"><small class="text-body-secondary"></small></p>
+  </div>
+  <img src="images/claeniing.jpg" class="card-img-bottom" alt="..." height="250px">
+</div>
+      </div>
+   </section><br><hr>
+   
+
+   <h2 class="text-center text-danger"><b>AVAILABLE DOCTORS</b></h2>
+   <hr><section class="row">
+       <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/man1.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.John Smith</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+
+        <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/woman1.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.Emily Johnson</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+
+        <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/man2.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.Michael Brown</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+
+        <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/woman2.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.Sarah Lee</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+
+        <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/man3.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.David Wilson</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+
+        <div class="col-lg-4">
+        <div class="card" >
+  <img src="images/woman3.jpg" class="card-img-top" alt="..." height="300px">
+  <div class="card-body">
+    <h5 class="card-title text-secondary">Dr.Joyce Wawira</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="doctor.html" class="btn btn-success">PERSONAL DOCTORS</a>
+  </div>
+</div>
+       </div>
+   </section>
+    <!-- last section starts here -->
+   <section class="row bg-dark"> 
+      <div class="col-lg-4">
+        <h3 class="text-center text-warning"><b>REACH US</b></h3>
+        <a href="https://www.facebook.com">
+             <h5 class="p-2">facebook</h5><img src="images/fb.png" alt="fb" id="hover" class="bg-dark p-2 text-center" height="40px">
+                </a><br>
+               
+                <a href="https://www.instagram.com">
+            <h5 class="p-2"> instagram</h5> <img src="images/in.png" alt="in" id="hover" class="bg-dark p-2" height="40px">
+                </a><br>
+                
+                <a href="https://www.twitterr.com">
+              <h5 class="p-2">twitter </h5>      <img src="images/x.png" alt="x" id="hover" class="bg-dark p-2" height="40px">
+                </a><br>
+      </div>
+
+      <div class="col-lg-4">
+       <section class="about-section">
+    <h3 class="text-warning text-center"><b>ABOUT US</b></h3>
+    <p class="text-primary">we are here to make your health SUPERB. We treat GOD heals</p>
+    
+    <h4 class="text-warning text-center">Our Story</h4>
+    <p class="text-primary">Tell the journey of how your business started, the challenges you faced, and your main goals.</p>
+    
+  
+
+    <!-- Optional: Add a call to action -->
+    <a href="[Link to Contact Page]" class="cta-button btn-success ">Contact Us</a>
+
+     </div>
+
+     <div class="col-lg-4">
+      <h3 class="text-warning text-center">Contact Us</h3>
+            <form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control text-center" placeholder="INPUT YOUR E-MAIL" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text ">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control text-center" id="exampleInputPassword1" placeholder="INPUT YOUR PASSWORD">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label text-warning" for="exampleCheck1" c>I accept Metro's Privacy and cookies </label>
+  </div>
+  <button type="submit" class="btn btn-danger">Submit</button>
+</form><br><br>
+
+</div>
+</section>
+
+      </div>
+
+           <!-- Footer -->
+       <footer class="text-center text-white bg-dark p-2">
+            <b class="text-danger">DEVELOPED BY MISHECK KARANI.&COPY;2026 ALL RIGHTS RESERVED</b>
+
+         </footer>
+         </section>
+         <marquee behavior="glow" direction="right" class="bg-dark text-secondary" id="move"><b>THANKYOU FOR CHECKING YOUR HEALTH WITH US..... ALWAYS WELCOME   </b></marquee>
+
+   </section>
+
+
+
+
+
+</body>
+</html>

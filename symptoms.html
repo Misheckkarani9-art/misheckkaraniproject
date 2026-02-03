@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Symptom Checker - Wellbeing Healthcare Center</title>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #007bff; /* Blueish color */
+    padding: 12px 30px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #ffd700; /* Gold accent */
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+/* Container */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+/* Form styling */
+form input[type="checkbox"], form input[type="radio"] {
+    margin-right: 10px;
+}
+
+form label {
+    display: block;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 12px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Return Home Button */
+.backBtn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #ffd700;
+    color: #007bff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.backBtn:hover {
+    background-color: #e6c200;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    .container {
+        margin: 30px 20px;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Wellbeing Healthcare Center</div>
+</nav>
+
+<!-- Symptoms Checker Form -->
+<div class="container">
+    <h2>Symptoms Checker</h2>
+    <form id="symptomForm">
+        <label><input type="checkbox" name="symptoms" value="Fever"> Fever</label>
+        <label><input type="checkbox" name="symptoms" value="Cough"> Cough</label>
+        <label><input type="checkbox" name="symptoms" value="Headache"> Headache</label>
+        <label><input type="checkbox" name="symptoms" value="Fatigue"> Fatigue</label>
+        <label><input type="checkbox" name="symptoms" value="Sore Throat"> Sore Throat</label>
+        <label><input type="checkbox" name="symptoms" value="Shortness of Breath"> Shortness of Breath</label>
+        <textarea placeholder="Additional symptoms or details..." rows="4"></textarea>
+        <button type="submit"><i class="fa-solid fa-microscope"></i> Check Symptoms</button>
+    </form>
+    <button class="backBtn" onclick="goHome()"><i class="fa-solid fa-house"></i> Return Home</button>
+</div>
+
+<script>
+// Return Home function
+function goHome(){
+    window.location.href = 'index.html'; // replace with your homepage filename
+}
+
+// Optional: handle form submission
+document.getElementById('symptomForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Symptoms checked successfully! Please consult a doctor if necessary.');
+    this.reset();
+});
+</script>
+
+</body>
+</html>

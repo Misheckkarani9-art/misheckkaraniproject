@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drugs & Supplements - Wellbeing Healthcare Center</title>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #007bff; /* Blue navbar */
+    padding: 12px 30px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #ffd700; /* Gold accent */
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+/* Drug Categories */
+.category {
+    margin: 20px 0;
+}
+
+.category label {
+    font-weight: bold;
+    color: #007bff;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.category select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+/* Return Home Button */
+.backBtn {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    background-color: #ffd700;
+    color: #007bff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.backBtn:hover {
+    background-color: #e6c200;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    .container {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Wellbeing Healthcare Center</div>
+</nav>
+
+<!-- Drug Supplements Form -->
+<div class="container">
+    <h2>Drugs & Supplements</h2>
+
+    <!-- Painkillers -->
+    <div class="category">
+        <label for="painkillers">Painkillers</label>
+        <select id="painkillers">
+            <option value="">Select a painkiller</option>
+            <option value="paracetamol">Paracetamol</option>
+            <option value="ibuprofen">Ibuprofen</option>
+            <option value="aspirin">Aspirin</option>
+            <option value="naproxen">Naproxen</option>
+        </select>
+    </div>
+
+    <!-- Vitamins -->
+    <div class="category">
+        <label for="vitamins">Vitamins</label>
+        <select id="vitamins">
+            <option value="">Select a vitamin</option>
+            <option value="vitaminA">Vitamin A</option>
+            <option value="vitaminB">Vitamin B Complex</option>
+            <option value="vitaminC">Vitamin C</option>
+            <option value="vitaminD">Vitamin D</option>
+            <option value="vitaminE">Vitamin E</option>
+        </select>
+    </div>
+
+    <!-- Antibiotics -->
+    <div class="category">
+        <label for="antibiotics">Antibiotics</label>
+        <select id="antibiotics">
+            <option value="">Select an antibiotic</option>
+            <option value="amoxicillin">Amoxicillin</option>
+            <option value="azithromycin">Azithromycin</option>
+            <option value="ciprofloxacin">Ciprofloxacin</option>
+            <option value="doxycycline">Doxycycline</option>
+        </select>
+    </div>
+
+    <!-- Supplements -->
+    <div class="category">
+        <label for="supplements">Other Supplements</label>
+        <select id="supplements">
+            <option value="">Select a supplement</option>
+            <option value="protein">Protein Powder</option>
+            <option value="omega3">Omega-3</option>
+            <option value="calcium">Calcium</option>
+            <option value="iron">Iron</option>
+        </select>
+    </div>
+
+    <button class="backBtn" onclick="goHome()"><i class="fa-solid fa-house"></i> Return Home</button>
+</div>
+
+<script>
+// Return Home function
+function goHome(){
+    window.location.href = 'index.html'; // replace with your homepage filename
+}
+</script>
+
+</body>
+</html>

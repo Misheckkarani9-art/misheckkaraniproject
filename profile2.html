@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login / Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #fff;
+            width: 360px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #2c7be5;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a68d1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .profile-info {
+            background: #f8f9fb;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <div class="navbar-left">
+        <div class="logo">Wellbeing Healthcare</div>
+        <a href="profile.html" id="profileLink" style="display:none;"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="#"><i class="fa-solid fa-pills"></i> Drugs & Supplements</a>
+        <a href="symptoms.html"><i class="fa-solid fa-stethoscope"></i> Symptom Checker</a>
+        <a href="#"><i class="fa-solid fa-user-doctor"></i> Find Personal Doctor</a>
+        <a href="appointent.html"><i class="fa-solid fa-calendar-check"></i> Request Appointment</a>
+    </div>
+
+    <div class="navbar-right">
+        <input type="text" placeholder="Search...">
+        <a href="#loginFormContainer"><button id="loginButton"><i class="fa-solid fa-right-to-bracket"></i> Login</button></a>
+    </div>
+</nav>
+
+
+<!-- LOGIN FORM -->
+<div class="card" id="loginCard">
+    <h2>Login</h2>
+    <form onsubmit="login(event)">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" required>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<!-- PROFILE FORM -->
+<div class="card hidden" id="profileCard">
+    <h2>Your Profile</h2>
+
+    <div class="profile-info">
+        <strong>Name:</strong> <span id="profileName">User</span>
+    </div>
+
+    <div class="profile-info">
+        <strong>Email:</strong> <span id="profileEmail"></span>
+    </div>
+
+    <div class="profile-info">
+        <strong>Account Count:</strong> <span id="profileCount">0</span>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+    function login(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+
+        // Simulate login success
+        document.getElementById("loginCard").classList.add("hidden");
+        document.getElementById("profileCard").classList.remove("hidden");
+
+        // Fill profile data
+        document.getElementById("profileName").textContent = "Logged-in User";
+        document.getElementById("profileEmail").textContent = email;
+        document.getElementById("profileCount").textContent = 3;
+    }
+
+    function logout() {
+        document.getElementById("profileCard").classList.add("hidden");
+        document.getElementById("loginCard").classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>

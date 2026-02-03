@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Find a Personal Doctor - Wellbeing Healthcare Center</title>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #007bff; /* Blue navbar */
+    padding: 12px 30px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #ffd700; /* Gold accent */
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+/* Container */
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+/* Search bar */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Doctor List */
+.doctor-list {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor-list li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doctor-list li span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Return Home Button */
+.backBtn {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    background-color: #ffd700;
+    color: #007bff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.backBtn:hover {
+    background-color: #e6c200;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    .container {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Wellbeing Healthcare Center</div>
+</nav>
+
+<!-- Doctor Finder Container -->
+<div class="container">
+    <h2>Find a Personal Doctor</h2>
+    <input type="text" id="searchInput" placeholder="Search by name or specialty...">
+
+    <ul class="doctor-list" id="doctorList">
+        <li><span>Dr. John Smith</span> - Cardiology</li>
+        <li><span>Dr. Emily Johnson</span> - Pediatrics</li>
+        <li><span>Dr. Michael Brown</span> - Dermatology</li>
+        <li><span>Dr. Sarah Lee</span> - General Medicine</li>
+        <li><span>Dr. David Wilson</span> - Orthopedics</li>
+        <li><span>Dr. Joyce Wawira</span> - Nutritionalist</li>
+    </ul>
+
+    <button class="backBtn" onclick="goHome()"><i class="fa-solid fa-house"></i> Return Home</button>
+</div>
+
+<script>
+// Return Home function
+function goHome(){
+    window.location.href = 'index.html'; // replace with your homepage filename
+}
+
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const doctorList = document.getElementById('doctorList');
+searchInput.addEventListener('keyup', function(){
+    const filter = searchInput.value.toLowerCase();
+    const items = doctorList.getElementsByTagName('li');
+
+    for(let i=0; i<items.length; i++){
+        const text = items[i].textContent || items[i].innerText;
+        if(text.toLowerCase().indexOf(filter) > -1){
+            items[i].style.display = "";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+});
+</script>
+
+</body>
+</html>
